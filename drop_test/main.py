@@ -26,7 +26,7 @@ def main():
             n = int(parts[0])
             h = int(parts[1])
             result = min_num_of_drops(n, h)
-            print(f"n={n}, h={h} => {result}")
+            print(f"{result}")
 
 
 if __name__ == "__main__":
