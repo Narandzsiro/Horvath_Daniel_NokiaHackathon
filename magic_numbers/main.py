@@ -32,9 +32,10 @@ def next_magic_num(num):
 
 def main():
     data = Path("input.txt").read_text(encoding="utf-8")
+    print(data, end="")
 
-    for og_line in data.splitlines():
-        line = og_line.strip()
+    for line in data.splitlines():
+        line = line.strip()
         if not line:
             continue
         if '^' in line:
@@ -42,7 +43,7 @@ def main():
             num = pow(int(left_side), int(right_side))
         else:
             num = int(line)
-        print(og_line + " => " + str(next_magic_num(num)))
+        print(next_magic_num(num))
 
 if __name__ == "__main__":
     main()
