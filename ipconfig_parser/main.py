@@ -92,5 +92,7 @@ def main():
     with open("adapters_config.json", "w", encoding="utf-8") as f:
         json.dump(final_output, f, indent=2, ensure_ascii=False)
 
+    print(json.dumps(final_output, indent=2, ensure_ascii=False))
+
 if __name__ == "__main__":
     main()
