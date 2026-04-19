@@ -1,4 +1,4 @@
-Licence plate  Fee       
+License plate  Fee       
 ABC-123		300
 KFT-582		900
 JRM-441		0
