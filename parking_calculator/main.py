@@ -75,8 +75,8 @@ def main():
             if total_minutes is not None:
                 
                 fee = FeeCalculation(total_minutes)
-                results.append(f"{licensePlate}\t\t{fee}")
-                print(f"{licensePlate}\t\t{fee}")
+                results.append(f"{licensePlate}\t\t{fee} forint")
+                print(f"{licensePlate}\t\t{fee} forint")
             else:
                 results.append(f"{licensePlate}: hibás időpontok")
 
