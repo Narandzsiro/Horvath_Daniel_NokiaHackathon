@@ -35,7 +35,7 @@ def FeeCalculation(timeSpent):
         fee += math.ceil(180 / 60) * 300 
         fee += math.ceil(remainingMinutes/60) * 500
     else:
-        fee += math.ceil(remainingMinutes/60) * 300  
+        fee += math.ceil(remainingMinutes/60) * 300
         
     return int(round(fee))
 
@@ -62,13 +62,20 @@ def main():
             arrival = f"{data[1]} {data[2]}"
             departure = f"{data[3]} {data[4]}"
             
-            minutes = Parsing(arrival, departure)
+            total_minutes = Parsing(arrival, departure)
             
-            if minutes is not None:
+            if total_minutes > 30:
+                billable_minutes = total_minutes - 30
+                total_hours = math.ceil(billable_minutes / 60)
+                time_str = f"{total_hours} óra parkolás"
+            else:
+                time_str = f"{int(total_minutes)} perc parkolás"
+
+            if total_minutes is not None:
                 
-                fee = FeeCalculation(minutes)
+                fee = FeeCalculation(total_minutes)
                 results.append(f"{licencePlate}: {fee} forint")
-                print(f"{licencePlate}: {minutes:.0f} perc -> {fee} forint")
+                print(f"{time_str} → {fee} forint")
             else:
                 results.append(f"{licencePlate}: hibás időpontok")
 
