@@ -48,7 +48,8 @@ def main():
 
     content = file_path.read_text(encoding="utf-8").splitlines()
     dataRows = content[2:]
-
+    header = f"{'Licence Plate':<15}{'Fee':<10}"
+    print(f"{header}")
     results = []
 
     for row in dataRows:
@@ -75,7 +76,7 @@ def main():
                 
                 fee = FeeCalculation(total_minutes)
                 results.append(f"{licencePlate}\t\t{fee}")
-                print(f"{time_str} → {fee} forint")
+                print(f"{licencePlate}\t\t{fee}")
             else:
                 results.append(f"{licencePlate}: hibás időpontok")
 
