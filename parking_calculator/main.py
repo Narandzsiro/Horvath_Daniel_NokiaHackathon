@@ -64,7 +64,7 @@ def main():
                 results.append(f"{rendszam}: {fee}")
             else:
                 duration = exit - entry
-                results.append(f"{fee} forint")
+                results.append(f"{fee}")
 
 
     output_text = "\n".join(results)
