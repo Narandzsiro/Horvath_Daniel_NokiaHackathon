@@ -62,13 +62,6 @@ def main():
             departure = f"{data[3]} {data[4]}"
             
             total_minutes = Parsing(arrival, departure)
-            
-            if total_minutes > 30:
-                billable_minutes = total_minutes - 30
-                total_hours = math.ceil(billable_minutes / 60)
-                time_str = f"{total_hours} óra parkolás"
-            else:
-                time_str = f"{int(total_minutes)} perc parkolás"
 
             if total_minutes is not None:
                 
