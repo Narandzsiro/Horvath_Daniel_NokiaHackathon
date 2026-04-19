@@ -48,8 +48,6 @@ def main():
 
     content = file_path.read_text(encoding="utf-8").splitlines()
     dataRows = content[2:]
-    header = f"{'License plate':<15}{'Fee':<10}"
-    print(f"{header}")
     results = []
 
     for row in dataRows:
@@ -75,12 +73,12 @@ def main():
             if total_minutes is not None:
                 
                 fee = FeeCalculation(total_minutes)
-                results.append(f"{licensePlate}\t\t{fee} forint")
-                print(f"{licensePlate}\t\t{fee} forint")
+                results.append(f"{licensePlate}\t\t{fee}")
+                print(f"{licensePlate}\t\t{fee}")
             else:
                 results.append(f"{licensePlate}: hibás időpontok")
 
-    Path("parking_report.txt").write_text(f"{header}\n" + "\n".join(results), encoding="utf-8")
+    Path("parking_report.txt").write_text(f"\n".join(results), encoding="utf-8")
 
 if __name__ == "__main__":
     main()
