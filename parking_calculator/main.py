@@ -48,7 +48,7 @@ def main():
 
     content = file_path.read_text(encoding="utf-8").splitlines()
     dataRows = content[2:]
-    header = f"{'Licence Plate':<15}{'Fee':<10}"
+    header = f"{'Licence plate':<15}{'Fee':<10}"
     print(f"{header}")
     results = []
 
@@ -80,7 +80,6 @@ def main():
             else:
                 results.append(f"{licencePlate}: hibás időpontok")
 
-    header = f"{'Licence Plate':<15}{'Fee':<10}"
     Path("parking_report.txt").write_text(f"{header}\n" + "\n".join(results), encoding="utf-8")
 
 if __name__ == "__main__":
