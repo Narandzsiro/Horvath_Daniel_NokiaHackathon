@@ -5,6 +5,10 @@ from pathlib import Path
 def calculate_parking_fee(entry_time, exit_time):
     duration = exit_time - entry_time
     total_seconds = duration.total_seconds()
+    
+    if total_seconds < 0:
+        return "HIBA: A kilépési idő korábbi, mint a belépési!"
+    
     total_minutes = math.ceil(total_seconds / 60)
     
     if total_minutes >= 1440:
