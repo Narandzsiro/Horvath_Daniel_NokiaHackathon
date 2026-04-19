@@ -1,75 +1,79 @@
-import math
-from datetime import datetime
 from pathlib import Path
+from datetime import datetime
+import math
 
-def calculate_parking_fee(entry_time, exit_time):
-    duration = exit_time - entry_time
-    total_seconds = duration.total_seconds()
-    
-    if total_seconds < 0:
-        return "HIBA: A kilépési idő korábbi, mint a belépési!"
-    
-    total_minutes = math.ceil(total_seconds / 60)
-    
-    if total_minutes >= 1440:
-        days = total_minutes // 1440
-        remaining_minutes = total_minutes % 1440
-    
-        if remaining_minutes == 0:
-            return days * 10000
-        else:
 
-            return (days * 10000) + calculate_sub_24h_fee(remaining_minutes)
+def Parsing(arrival, departure):
+    format_string = "%Y-%m-%d %H:%M:%S"
 
-    return calculate_sub_24h_fee(total_minutes)
+    d1 = datetime.strptime(arrival, format_string)
+    d2 = datetime.strptime(departure, format_string)
 
-def calculate_sub_24h_fee(minutes):
-    if minutes <= 30:
+    if d1 > d2:
+        return
+    
+    difference = d2-d1
+    return difference.total_seconds() / 60
+
+def FeeCalculation(timeSpent):
+    fee = 0
+
+    if timeSpent <= 30:
         return 0
     
-    fee = 0
-    if minutes < 180:
-        fee = (minutes - 30) * 5
+    days = timeSpent // 1440
+    remainingMinutes = timeSpent % 1440
+    fee += days * 10000
+
+    if remainingMinutes >= 30:
+        remainingMinutes -= 30
     else:
-        fee = 900 + (minutes - 180) * (500 / 60)
+        return int(round(fee))
+    
+    if remainingMinutes > 180:
+        remainingMinutes -= 180
+        fee += math.ceil(180 / 60) * 300 
+        fee += math.ceil(remainingMinutes/60) * 500
+    else:
+        fee += math.ceil(remainingMinutes/60) * 300  
         
-    return math.ceil(fee)
+    return int(round(fee))
 
 def main():
-    input_file = Path("input.txt")
-    output_file = Path("parking_report.txt")
+    file_path = Path("input.txt")
     
-    if not input_file.exists():
-        print("A forrásfájl nem található!")
+    if not file_path.exists():
+        print("Hiba: A(z) \"input.txt\" fájl nem található!")
         return
 
-    results = []
-    lines = input_file.read_text(encoding="utf-8").splitlines()
+    content = file_path.read_text(encoding="utf-8").splitlines()
+    dataRows = content[2:]
 
-    for line in lines[1:]:
-        if not line or "RENSZAM" in line or "=" in line:
+    results = []
+
+    for row in dataRows:
+        if not row.strip():
             continue
             
-        parts = line.split('\t')
-        parts = [p.strip() for p in parts if p.strip()]
+        data = row.split()
         
-        if len(parts) == 3:
-            rendszam = parts[0]
-            entry = datetime.strptime(parts[1], "%Y-%m-%d %H:%M:%S")
-            exit = datetime.strptime(parts[2], "%Y-%m-%d %H:%M:%S")
+        if len(data) == 5:
+            licencePlate = data[0]
+            arrival = f"{data[1]} {data[2]}"
+            departure = f"{data[3]} {data[4]}"
             
-            fee = calculate_parking_fee(entry, exit)
+            minutes = Parsing(arrival, departure)
             
-            if isinstance(fee, str):
-                results.append(f"{rendszam}: {fee}")
+            if minutes is not None:
+                
+                fee = FeeCalculation(minutes)
+                results.append(f"{licencePlate}: {fee} forint")
+                print(f"{licencePlate}: {minutes:.0f} perc -> {fee} forint")
             else:
-                duration = exit - entry
-                results.append(f"{fee}")
+                results.append(f"{licencePlate}: hibás időpontok")
 
-
-    output_text = "\n".join(results)
-    output_file.write_text(output_text, encoding="utf-8")
-    print(output_text)
+    
+    Path("parking_report.txt").write_text("\n".join(results), encoding="utf-8")
 
 if __name__ == "__main__":
     main()

@@ -1,10 +1,10 @@
-1:25:21 perc parkolás -> 280 forint
-2:52:32 perc parkolás -> 715 forint
-0:26:27 perc parkolás -> 0 forint
-4:31:34 perc parkolás -> 1667 forint
-20:47:31 perc parkolás -> 9800 forint
-0:25:35 perc parkolás -> 0 forint
-4:26:21 perc parkolás -> 1625 forint
-1 day, 0:00:00 perc parkolás -> 10000 forint
-1 day, 6:06:28 perc parkolás -> 12459 forint
-2:28:36 perc parkolás -> 595 forint
+ABC-123: 300 forint
+KFT-582: 900 forint
+JRM-441: 0 forint
+PTX-907: 1900 forint
+LND-264: 9900 forint
+MVB-715: 0 forint
+HSZ-388: 1400 forint
+QWE-129: 10000 forint
+RTY-663: 12400 forint
+ZPL-504: 600 forint
