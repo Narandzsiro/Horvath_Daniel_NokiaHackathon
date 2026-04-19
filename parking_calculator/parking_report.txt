@@ -1,0 +1,10 @@
+ABC-123: 1 óra parkolás → 300 forint
+KFT-582: 3 óra parkolás → 900 forint
+JRM-441: 26 perc parkolás → 0 forint
+PTX-907: 5 óra parkolás → 1900 forint
+LND-264: 21 óra parkolás → 9900 forint
+MVB-715: 25 perc parkolás → 0 forint
+HSZ-388: 4 óra parkolás → 1400 forint
+QWE-129: 24 óra parkolás → 10000 forint
+RTY-663: 30 óra parkolás → 12400 forint
+ZPL-504: 2 óra parkolás → 600 forint
