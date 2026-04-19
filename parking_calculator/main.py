@@ -48,7 +48,7 @@ def main():
 
     content = file_path.read_text(encoding="utf-8").splitlines()
     dataRows = content[2:]
-    header = f"{'Licence plate':<15}{'Fee':<10}"
+    header = f"{'License plate':<15}{'Fee':<10}"
     print(f"{header}")
     results = []
 
@@ -59,7 +59,7 @@ def main():
         data = row.split()
         
         if len(data) == 5:
-            licencePlate = data[0]
+            licensePlate = data[0]
             arrival = f"{data[1]} {data[2]}"
             departure = f"{data[3]} {data[4]}"
             
@@ -75,10 +75,10 @@ def main():
             if total_minutes is not None:
                 
                 fee = FeeCalculation(total_minutes)
-                results.append(f"{licencePlate}\t\t{fee}")
-                print(f"{licencePlate}\t\t{fee}")
+                results.append(f"{licensePlate}\t\t{fee}")
+                print(f"{licensePlate}\t\t{fee}")
             else:
-                results.append(f"{licencePlate}: hibás időpontok")
+                results.append(f"{licensePlate}: hibás időpontok")
 
     Path("parking_report.txt").write_text(f"{header}\n" + "\n".join(results), encoding="utf-8")
 
