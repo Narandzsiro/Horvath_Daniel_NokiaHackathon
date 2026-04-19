@@ -74,13 +74,13 @@ def main():
             if total_minutes is not None:
                 
                 fee = FeeCalculation(total_minutes)
-                results.append(f"{licencePlate}: {time_str} → {fee} forint")
+                results.append(f"{licencePlate}\t\t{fee}")
                 print(f"{time_str} → {fee} forint")
             else:
                 results.append(f"{licencePlate}: hibás időpontok")
 
-    
-    Path("parking_report.txt").write_text("\n".join(results), encoding="utf-8")
+    header = f"{'Licence Plate':<15}{'Fee':<10}"
+    Path("parking_report.txt").write_text(f"{header}\n" + "\n".join(results), encoding="utf-8")
 
 if __name__ == "__main__":
     main()
