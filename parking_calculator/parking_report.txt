@@ -1,0 +1,10 @@
+1 óra parkolás → 300 forint
+3 óra parkolás → 900 forint
+26 perc parkolás → 0 forint
+5 óra parkolás → 1900 forint
+21 óra parkolás → 9900 forint
+25 perc parkolás → 0 forint
+4 óra parkolás → 1400 forint
+24 óra parkolás → 10000 forint
+30 óra parkolás → 12400 forint
+2 óra parkolás → 600 forint
